@@ -1,5 +1,5 @@
-import 'package:carena/utilities/colors.dart';
-import 'package:carena/utilities/data.dart';
+import 'package:carena/globals/colors.dart';
+import 'package:carena/globals/data.dart';
 import 'package:carena/screens/car_sale_Screens/widgets/comment_card.dart';
 import 'package:carena/screens/car_sale_Screens/widgets/input_widget.dart';
 import 'package:flutter/material.dart';

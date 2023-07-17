@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1045403779986",
+    "project_id": "carena-392620",
+    "storage_bucket": "carena-392620.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1045403779986:android:1ac4de8254c433fd0d374b",
+        "android_client_info": {
+          "package_name": "com.example.carena"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1045403779986-prjb270dpvk17dljvpvcp5j6cp5gn1ds.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.carena",
+            "certificate_hash": "d2089826232b7b5d9b6d83e477f27b1a59c8bb16"
+          }
+        },
+        {
+          "client_id": "1045403779986-ei2srcgtl1r9t8dtdh6mt0anqoq0hppb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrnQyy1Dps0q5x7qk-fFCPGy6sgKfaQs8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1045403779986-ei2srcgtl1r9t8dtdh6mt0anqoq0hppb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

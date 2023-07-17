@@ -3,7 +3,7 @@ import 'package:carena/screens/drivers_screens/screens/find_a_driver_screen.dart
 import 'package:carena/screens/mechanic_screens.dart/find_a_mechanic_screen.dart';
 import 'package:carena/screens/taxi_services.dart/get_a_taxi_screen.dart';
 import 'package:carena/screens/carhire_services_screens/hire_a_car_screen.dart';
-import 'package:carena/utilities/colors.dart';
+import 'package:carena/globals/colors.dart';
 import 'package:flutter/material.dart';
 
 class MobileScreenlayout extends StatefulWidget {

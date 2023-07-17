@@ -1,8 +1,8 @@
 import 'package:carena/screens/car_sale_Screens/widgets/comment_card.dart';
 import 'package:carena/screens/drivers_screens/screens/rating_and_review_screen.dart';
-import 'package:carena/utilities/colors.dart';
-import 'package:carena/utilities/data.dart';
-import 'package:carena/utilities/url_launcher.dart';
+import 'package:carena/globals/colors.dart';
+import 'package:carena/globals/data.dart';
+import 'package:carena/globals/url_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
@@ -92,7 +92,7 @@ class DriverProfilePage extends StatelessWidget {
       body: ListView(
         children: [
           SizedBox(
-            height: 300.0, // Set an explicit height for the Container
+            height: 290.0, // Set an explicit height for the Container
             child: Stack(
               children: [
                 const SizedBox(
@@ -121,16 +121,16 @@ class DriverProfilePage extends StatelessWidget {
                   ),
                 ),
                 const Positioned(
-                  bottom: 110.0,
+                  bottom: 100.0,
                   right: 10.0,
                   child: Icon(
                     Icons.add_a_photo_outlined,
-                    color: Colors.white,
+                    color: complemtarybrandcolor,
                     size: 35.0,
                   ),
                 ),
                 const Positioned(
-                  bottom: 25.0,
+                  bottom: 20.0,
                   left: 0.0,
                   right: 0.0,
                   child: ListTile(
@@ -178,6 +178,95 @@ class DriverProfilePage extends StatelessWidget {
               ],
             ),
           ),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+            child: Text(
+              "statistics",
+              style: TextStyle(
+                fontSize: 24.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(
+              left: 20.0,
+              top: 5.0,
+              right: 20.0,
+            ),
+            child: Container(
+              height: 90.0,
+              decoration: BoxDecoration(
+                  color: brandcolor,
+                  border: Border.all(width: borderwidth, color: brandcolor),
+                  borderRadius: const BorderRadius.all(Radius.circular(10.0))),
+              child: const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      children: [
+                        Text(
+                          "312",
+                          style: TextStyle(
+                            fontSize: 28.0,
+                            fontWeight: FontWeight.bold,
+                            color: complemtarybrandcolor,
+                          ),
+                        ),
+                        SizedBox(height: 5.0),
+                        Text(
+                          "Rides",
+                          style: TextStyle(
+                            fontSize: 20.0,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        Text(
+                          "3.5",
+                          style: TextStyle(
+                            fontSize: 28.0,
+                            fontWeight: FontWeight.bold,
+                            color: complemtarybrandcolor,
+                          ),
+                        ),
+                        SizedBox(height: 5.0),
+                        Text(
+                          "Rating",
+                          style: TextStyle(
+                            fontSize: 20.0,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        Text(
+                          "228",
+                          style: TextStyle(
+                            fontSize: 28.0,
+                            fontWeight: FontWeight.bold,
+                            color: complemtarybrandcolor,
+                          ),
+                        ),
+                        SizedBox(height: 5.0),
+                        Text(
+                          "Reviews",
+                          style: TextStyle(
+                            fontSize: 20.0,
+                          ),
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ),
           Container(
             padding:
                 const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
@@ -185,12 +274,36 @@ class DriverProfilePage extends StatelessWidget {
                 // color: Colors.amber,
                 ),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 10.0),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.person,
+                        color: complemtarybrandcolor,
+                      ),
+                      SizedBox(
+                        width: 10.0,
+                      ),
+                      Text(
+                        "personal details",
+                        style: TextStyle(
+                          fontSize: 24.0,
+                          fontWeight: FontWeight.bold,
+                          color: brandcolor,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
                 ContactInfoWidget(
-                    icon: Icons.phone,
-                    text: "+254 11234566",
-                    action: "call",
-                    onTap: () => urllauncher("+254 11234566", "phone")),
+                  icon: Icons.phone,
+                  text: "+254 11234566",
+                  action: "call",
+                  onTap: () => urllauncher("+254 11234566", "phone"),
+                ),
                 ContactInfoWidget(
                   icon: Icons.email,
                   text: "emiliaclarke@gmail.com",
@@ -205,36 +318,88 @@ class DriverProfilePage extends StatelessWidget {
                   icon: Icons.access_time_filled,
                   text: "5.00am - 9.00pm",
                 ),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: RatingBar.builder(
-                    //Ratins Icons here
-                    initialRating: 3,
-                    minRating: 1,
-                    direction: Axis.horizontal,
-                    allowHalfRating: true,
-                    itemCount: 5,
-                    itemSize: 30.0,
-                    itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
-                    itemBuilder: (context, _) => const Icon(
-                      Icons.star,
-                      color: Colors.orange,
-                    ),
-                    onRatingUpdate: (rating) {
-                      print(rating);
-                    },
-                  ),
-                ),
+                // Align(
+                //   alignment: Alignment.centerLeft,
+                //   child: RatingBar.builder(
+                //     //Ratins Icons here
+                //     initialRating: 3,
+                //     minRating: 1,
+                //     direction: Axis.horizontal,
+                //     allowHalfRating: true,
+                //     itemCount: 5,
+                //     itemSize: 30.0,
+                //     itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
+                //     itemBuilder: (context, _) => const Icon(
+                //       Icons.star,
+                //       color: complemtarybrandcolor,
+                //     ),
+                //     onRatingUpdate: (rating) {},
+                //   ),
+                // ),
                 const Padding(
                   padding: EdgeInsets.symmetric(vertical: 8.0),
                   child: Text(
                     "I am a professional driver with 5 years of experience in long-haul transportation. I specialize in refrigerated and hazmat shipments. Safety and punctuality are my top priorities, and I always strive to provide excellent service to my clients. I am dedicated, responsible, and have a clean driving record. I look forward to working with you!",
                     style: TextStyle(
-                      fontSize: 16.0,
+                      fontSize: 18.0,
                       color: Colors.grey,
                     ),
                   ),
                 ),
+              ],
+            ),
+          ),
+          Padding(
+            padding:
+                const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
+            child: Column(
+              children: [
+                Container(
+                  width: double.infinity,
+                  height: 50.0,
+                  decoration: const BoxDecoration(
+                    color: brandcolor,
+                  ),
+                  child: const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Vehicle",
+                          style: TextStyle(fontSize: 24.0),
+                        ),
+                        Text(
+                          "KCA 007Q",
+                          style: TextStyle(
+                            fontSize: 24.0,
+                            fontWeight: FontWeight.bold,
+                            color: complemtarybrandcolor,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Container(
+                  height: 371.0,
+                  width: double.infinity,
+                  decoration: BoxDecoration(color: bordercolor),
+                  child: GridView.count(
+                    crossAxisCount:
+                        2, // Adjust the number of columns according to your needs
+                    children: List.generate(
+                      carimages.length,
+                      (index) {
+                        String imageUrl = carimages[index]["url"]!;
+                        return Image.asset(
+                          imageUrl,
+                          fit: BoxFit.cover,
+                        );
+                      },
+                    ),
+                  ),
+                )
               ],
             ),
           ),
@@ -276,11 +441,15 @@ class DriverProfilePage extends StatelessWidget {
                             onPressed: () {
                               Navigator.of(context).push(
                                 MaterialPageRoute(
-                                  builder: (context) => RatingAndReviewPage(),
+                                  builder: (context) =>
+                                      const RatingAndReviewPage(),
                                 ),
                               );
                             },
-                            icon: const Icon(Icons.comment_bank),
+                            icon: const Icon(
+                              Icons.comment_bank,
+                              color: complemtarybrandcolor,
+                            ),
                             iconSize: 30.0,
                           )
                         ],

@@ -28,6 +28,21 @@ var posts = [
     "comments": 230
   },
 ];
+
+var carimages = [
+  {
+    "url": "assets/images/carone.jpg",
+  },
+  {
+    "url": "assets/images/cartwo.jpg",
+  },
+  {
+    "url": "assets/images/carthree.jpg",
+  },
+  {
+    "url": "assets/images/lexus.jpg",
+  }
+];
 var drivers = [
   {
     "username": "Clara monseth",

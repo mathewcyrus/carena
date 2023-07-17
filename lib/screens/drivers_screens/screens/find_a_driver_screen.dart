@@ -1,6 +1,6 @@
 import 'package:carena/screens/drivers_screens/widgets/driver_card.dart';
-import 'package:carena/utilities/colors.dart';
-import 'package:carena/utilities/data.dart';
+import 'package:carena/globals/colors.dart';
+import 'package:carena/globals/data.dart';
 import 'package:flutter/material.dart';
 
 class DriverForHirePage extends StatelessWidget {

@@ -1,10 +1,16 @@
-import 'package:carena/utilities/colors.dart';
-import 'package:carena/utilities/layouts/mobile_screen_layout.dart';
-import 'package:carena/utilities/layouts/responsive_screens.dart';
-import 'package:carena/utilities/layouts/web_screen_layout.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+import 'package:carena/globals/colors.dart';
+import 'package:carena/globals/layouts/mobile_screen_layout.dart';
+import 'package:carena/globals/layouts/responsive_screens.dart';
+import 'package:carena/globals/layouts/web_screen_layout.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 

@@ -1,4 +1,4 @@
-import 'package:carena/utilities/colors.dart';
+import 'package:carena/globals/colors.dart';
 import 'package:flutter/material.dart';
 
 class UserInputField extends StatefulWidget {

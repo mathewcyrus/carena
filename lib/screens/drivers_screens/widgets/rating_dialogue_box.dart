@@ -15,9 +15,9 @@ class _RatingDialogueBoxState extends State<RatingDialogueBox> {
       child: Center(
         child: Container(
           width: double.infinity,
-          decoration: BoxDecoration(color: Colors.amber),
+          decoration: const BoxDecoration(color: Colors.amber),
           height: 300.0,
-          child: Text("Dialoue"),
+          child: const Text("Dialoue"),
         ),
       ),
     );

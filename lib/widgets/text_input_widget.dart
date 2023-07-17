@@ -18,10 +18,9 @@ class UserInputField extends StatelessWidget {
     return TextField(
       controller: textEditingController,
       decoration: InputDecoration(
+        prefixIcon: const Icon(Icons.search),
         hintText: hintText,
-        border: OutlineInputBorder(
-            borderSide: Divider.createBorderSide(context),
-            borderRadius: BorderRadius.circular(20.0)),
+        border: InputBorder.none,
       ),
       keyboardType: textInputType,
       obscureText: ispass,

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>1045403779986-6chv1m0po9293bv4unlfu67bb9hnu38s.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1045403779986-6chv1m0po9293bv4unlfu67bb9hnu38s</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>1045403779986-prjb270dpvk17dljvpvcp5j6cp5gn1ds.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBWSzw2sTYb6OMDdx56hwRfqYV3J9B-D3Q</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1045403779986</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.carena</string>
+	<key>PROJECT_ID</key>
+	<string>carena-392620</string>
+	<key>STORAGE_BUCKET</key>
+	<string>carena-392620.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1045403779986:ios:ea8327a231b714bf0d374b</string>
+</dict>
+</plist>

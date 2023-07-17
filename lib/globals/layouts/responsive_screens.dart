@@ -1,4 +1,4 @@
-import 'package:carena/utilities/layouts/screen_dimensions.dart';
+import 'package:carena/globals/layouts/screen_dimensions.dart';
 import 'package:flutter/material.dart';
 
 class ResponsiveLayout extends StatelessWidget {

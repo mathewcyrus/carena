@@ -1,4 +1,4 @@
-import 'package:carena/utilities/colors.dart';
+import 'package:carena/globals/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
@@ -161,9 +161,9 @@ class _RatingAndReviewPageState extends State<RatingAndReviewPage> {
                       child: Text(
                         "Send",
                         style: TextStyle(
-                          fontSize: 24.0,
-                          fontWeight: FontWeight.bold,
-                        ),
+                            fontSize: 24.0,
+                            fontWeight: FontWeight.bold,
+                            color: complemtarybrandcolor),
                       ),
                     ),
                   ),

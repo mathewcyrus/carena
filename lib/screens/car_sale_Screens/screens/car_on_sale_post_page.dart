@@ -1,4 +1,4 @@
-import 'package:carena/utilities/colors.dart';
+import 'package:carena/globals/colors.dart';
 import 'package:carena/screens/car_sale_Screens/widgets/likes_and_comments_bar.dart';
 import 'package:flutter/material.dart';
 

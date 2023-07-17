@@ -1,5 +1,5 @@
 import 'package:carena/screens/drivers_screens/screens/drivers_profile.dart';
-import 'package:carena/utilities/colors.dart';
+import 'package:carena/globals/colors.dart';
 import 'package:flutter/material.dart';
 
 class DriverCard extends StatelessWidget {
@@ -47,16 +47,25 @@ class DriverCard extends StatelessWidget {
                   onTap: () => navigateToProfile(),
                   contentPadding: const EdgeInsets.all(0.0),
                   leading: CircleAvatar(
+                    backgroundColor: Colors.white24,
                     radius: 30.0,
                     backgroundImage: AssetImage(driver['url']),
                   ),
                   title: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        driver['username'],
-                        style: const TextStyle(fontSize: 20.0),
-                      ),
+                      driver['username'] != null
+                          ? Text(
+                              driver['username'],
+                              style: const TextStyle(fontSize: 20.0),
+                            )
+                          : Container(
+                              width: 100.0,
+                              height: 30.0,
+                              decoration: const BoxDecoration(
+                                color: Colors.white24,
+                              ),
+                            ),
                       Row(
                         children: [
                           const Icon(
@@ -102,11 +111,17 @@ class DriverCard extends StatelessWidget {
                           topLeft: Radius.circular(10.0),
                           topRight: Radius.circular(10.0),
                         ),
-                        child: Image(
+                        child: Container(
                           height: 180.0,
                           width: double.infinity,
-                          fit: BoxFit.cover,
-                          image: AssetImage(driver['url']),
+                          decoration:
+                              const BoxDecoration(color: Colors.white24),
+                          child: Image(
+                            height: 180.0,
+                            width: double.infinity,
+                            fit: BoxFit.cover,
+                            image: AssetImage(driver['url']),
+                          ),
                         ),
                       ),
                     ),
