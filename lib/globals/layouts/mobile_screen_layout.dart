@@ -1,3 +1,6 @@
+import 'package:carena/authentication/screens/login_screen.dart';
+import 'package:carena/authentication/screens/registration_screen.dart';
+import 'package:carena/globals/widgets/drawer_widget.dart';
 import 'package:carena/screens/car_sale_Screens/screens/car_selling_and_buying_screen.dart';
 import 'package:carena/screens/drivers_screens/screens/find_a_driver_screen.dart';
 import 'package:carena/screens/mechanic_screens.dart/find_a_mechanic_screen.dart';
@@ -40,15 +43,28 @@ class _MobileScreenlayoutState extends State<MobileScreenlayout> {
         actions: [
           IconButton(
               iconSize: 30.0,
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const UserRegistrationDetails(),
+                  ),
+                );
+              },
               icon: const Icon(Icons.light_mode_outlined)),
           IconButton(
               iconSize: 30.0,
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const UserLogin(),
+                  ),
+                );
+              },
               icon: const Icon(Icons.account_circle_outlined))
         ],
       ),
       body: screens[indexClicked],
+      drawer: const DrawerWidget(),
       bottomNavigationBar: Container(
         decoration: const BoxDecoration(
           border: Border(

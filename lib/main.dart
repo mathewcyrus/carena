@@ -1,3 +1,5 @@
+import 'package:carena/authentication/screens/login_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:carena/globals/colors.dart';
@@ -24,9 +26,28 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Carena',
       theme: ThemeData.dark().copyWith(scaffoldBackgroundColor: darkmodecolor),
-      home: const ResponsiveLayout(
-        mobileScreenlayout: MobileScreenlayout(),
-        webScreenlayout: WebScreenlayout(),
+      home: StreamBuilder(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.active) {
+            if (snapshot.hasData) {
+              return const ResponsiveLayout(
+                mobileScreenlayout: MobileScreenlayout(),
+                webScreenlayout: WebScreenlayout(),
+              );
+            } else if (snapshot.hasError) {
+              return const Center(
+                child: Text("An error Ocurred"),
+              );
+            }
+          }
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const CircularProgressIndicator(
+              color: Colors.white,
+            );
+          }
+          return const UserLogin();
+        },
       ),
     );
   }

@@ -4,7 +4,6 @@ import 'package:carena/globals/colors.dart';
 import 'package:carena/globals/data.dart';
 import 'package:carena/globals/url_launcher.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class ContactInfoWidget extends StatelessWidget {
   final IconData icon;
