@@ -1,3 +1,4 @@
+import 'package:carena/routes/routes.dart';
 import 'package:carena/screens/car_sale_Screens/screens/car_details_screen.dart';
 import 'package:carena/screens/car_sale_Screens/screens/car_on_sale_comments_screen.dart';
 import 'package:flutter/material.dart';
@@ -51,7 +52,10 @@ class _LikesAndCommentsBarState extends State<LikesAndCommentsBar> {
             ),
           ),
           InkWell(
-            onTap: () => navigateToScreens("comments"),
+            onTap: () => Navigator.of(context).pushNamed(
+              RouteManager.singlePostCommentPage,
+              arguments: widget.post,
+            ),
             child: const Row(
               children: [
                 Icon(Icons.comment_bank),
@@ -66,7 +70,8 @@ class _LikesAndCommentsBarState extends State<LikesAndCommentsBar> {
             ),
           ),
           InkWell(
-            onTap: () => navigateToScreens("details"),
+            onTap: () => Navigator.of(context)
+                .pushNamed(RouteManager.singlePostDetailsPage),
             child: const Row(
               children: [
                 Icon(Icons.more_horiz),

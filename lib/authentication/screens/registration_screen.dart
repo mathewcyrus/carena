@@ -6,18 +6,22 @@ import 'package:carena/authentication/widgets/input.dart';
 import 'package:carena/globals/colors.dart';
 import 'package:carena/globals/methods/flush_bar.dart';
 import 'package:carena/globals/methods/image_picker.dart';
+import 'package:carena/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+
+import '../../globals/layouts/mobile_screen_layout.dart';
+import '../../globals/layouts/responsive_screens.dart';
+import '../../globals/layouts/web_screen_layout.dart';
 
 class UserRegistrationDetails extends StatefulWidget {
   const UserRegistrationDetails({Key? key}) : super(key: key);
 
   @override
-  _UserRegistrationDetailsState createState() =>
-      _UserRegistrationDetailsState();
+  UserRegistrationDetailsState createState() => UserRegistrationDetailsState();
 }
 
-class _UserRegistrationDetailsState extends State<UserRegistrationDetails> {
+class UserRegistrationDetailsState extends State<UserRegistrationDetails> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
@@ -59,9 +63,12 @@ class _UserRegistrationDetailsState extends State<UserRegistrationDetails> {
         Icons.check,
         brandcolor,
       );
-      Navigator.of(context).push(
+      Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (context) => const UserLogin(),
+          builder: (context) => const ResponsiveLayout(
+            mobileScreenlayout: MobileScreenlayout(),
+            webScreenlayout: WebScreenlayout(),
+          ),
         ),
       );
     }
@@ -84,12 +91,12 @@ class _UserRegistrationDetailsState extends State<UserRegistrationDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: darkmodecolor,
-      ),
       body: Container(
         width: double.infinity,
-        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+        padding: const EdgeInsets.symmetric(
+          horizontal: 20.0,
+          vertical: 80.0,
+        ),
         child: Column(
           children: [
             Expanded(
@@ -97,9 +104,9 @@ class _UserRegistrationDetailsState extends State<UserRegistrationDetails> {
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    const SizedBox(
-                      height: 80,
-                    ),
+                    // const SizedBox(
+                    //   height: 100,
+                    // ),
                     const Text(
                       "Carena",
                       style: TextStyle(fontSize: 45.0),
@@ -192,7 +199,7 @@ class _UserRegistrationDetailsState extends State<UserRegistrationDetails> {
                       ),
                     ),
                     const SizedBox(
-                      height: 40.0,
+                      height: 50.0,
                     ),
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -206,11 +213,8 @@ class _UserRegistrationDetailsState extends State<UserRegistrationDetails> {
                           width: 10.0,
                         ),
                         InkWell(
-                          onTap: () => Navigator.of(context).pushReplacement(
-                            MaterialPageRoute(
-                              builder: (context) => const UserLogin(),
-                            ),
-                          ),
+                          onTap: () => Navigator.of(context)
+                              .pushNamed(RouteManager.loginPage),
                           child: const Text(
                             "log in",
                             style: TextStyle(fontSize: 20.0, color: brandcolor),

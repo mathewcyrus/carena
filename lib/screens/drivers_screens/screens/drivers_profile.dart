@@ -1,3 +1,4 @@
+import 'package:carena/routes/routes.dart';
 import 'package:carena/screens/car_sale_Screens/widgets/comment_card.dart';
 import 'package:carena/screens/drivers_screens/screens/rating_and_review_screen.dart';
 import 'package:carena/globals/colors.dart';
@@ -383,7 +384,7 @@ class DriverProfilePage extends StatelessWidget {
                 Container(
                   height: 371.0,
                   width: double.infinity,
-                  decoration: BoxDecoration(color: bordercolor),
+                  decoration: const BoxDecoration(color: bordercolor),
                   child: GridView.count(
                     crossAxisCount:
                         2, // Adjust the number of columns according to your needs
@@ -437,14 +438,8 @@ class DriverProfilePage extends StatelessWidget {
                             flex: 1,
                           ),
                           IconButton(
-                            onPressed: () {
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      const RatingAndReviewPage(),
-                                ),
-                              );
-                            },
+                            onPressed: () => Navigator.of(context)
+                                .pushNamed(RouteManager.ratingAndReviewPage),
                             icon: const Icon(
                               Icons.comment_bank,
                               color: complemtarybrandcolor,

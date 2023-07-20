@@ -3,10 +3,15 @@ import 'package:carena/authentication/screens/registration_screen.dart';
 import 'package:carena/authentication/widgets/input.dart';
 import 'package:carena/globals/colors.dart';
 import 'package:carena/globals/methods/flush_bar.dart';
+import 'package:carena/routes/routes.dart';
 import 'package:flutter/material.dart';
 
+import '../../globals/layouts/mobile_screen_layout.dart';
+import '../../globals/layouts/responsive_screens.dart';
+import '../../globals/layouts/web_screen_layout.dart';
+
 class UserLogin extends StatefulWidget {
-  const UserLogin({super.key});
+  const UserLogin({Key? key}) : super(key: key);
 
   @override
   State<UserLogin> createState() => _UserLoginState();
@@ -31,8 +36,21 @@ class _UserLoginState extends State<UserLogin> {
       showNotificationBar(context, res, Icons.error, Colors.red);
     } else {
       showNotificationBar(
-          context, "logged in succesfully ", Icons.check, brandcolor);
+        context,
+        "logged in succesfully ",
+        Icons.check,
+        brandcolor,
+      );
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (context) => const ResponsiveLayout(
+            mobileScreenlayout: MobileScreenlayout(),
+            webScreenlayout: WebScreenlayout(),
+          ),
+        ),
+      );
     }
+
     setState(() {
       isloggingin = false;
     });
@@ -48,12 +66,11 @@ class _UserLoginState extends State<UserLogin> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: darkmodecolor,
-      ),
       body: Container(
         width: double.infinity,
-        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+        padding: const EdgeInsets.symmetric(
+          horizontal: 20.0,
+        ),
         child: Column(
           children: [
             Flexible(
@@ -121,11 +138,8 @@ class _UserLoginState extends State<UserLogin> {
                   width: 10.0,
                 ),
                 InkWell(
-                  onTap: () => Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(
-                      builder: (context) => const UserRegistrationDetails(),
-                    ),
-                  ),
+                  onTap: () =>
+                      Navigator.of(context).pushNamed(RouteManager.signupPage),
                   child: const Text(
                     "sign up",
                     style: TextStyle(fontSize: 20.0, color: brandcolor),

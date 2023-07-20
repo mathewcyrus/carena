@@ -1,11 +1,22 @@
 import 'dart:typed_data';
 import 'package:carena/firebasestorage/storage_methods.dart';
+import 'package:carena/models/user.dart' as model;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthMethods {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+  Future<model.User> getUserDetails() async {
+    User currentUser = _auth.currentUser!;
+
+    DocumentSnapshot snap =
+        await _firestore.collection('all_users').doc(currentUser.uid).get();
+
+    print(snap);
+    return model.User.convertUserFromSnap(snap);
+  }
 
   Future<String> signUpUser({
     required String email,
@@ -36,14 +47,17 @@ class AuthMethods {
         DocumentReference userRef =
             _firestore.collection("all_Users").doc(credential.user!.uid);
 
+        model.User user = model.User(
+          username: username,
+          profilephoto: profileImageUrl,
+          email: email,
+          uid: credential.user!.uid,
+          phonenumber: phonenumber,
+        );
         // Add user data to the "all users" subcollection
-        await userRef.set({
-          'username': username,
-          'email': email,
-          'uid': credential.user!.uid,
-          'phonenumber': phonenumber,
-          'profileimage': profileImageUrl,
-        });
+        await userRef.set(
+          user.toJson(),
+        );
 
         res = 'success';
       }

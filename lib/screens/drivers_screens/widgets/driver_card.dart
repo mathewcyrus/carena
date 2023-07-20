@@ -1,4 +1,4 @@
-import 'package:carena/screens/drivers_screens/screens/drivers_profile.dart';
+import 'package:carena/routes/routes.dart';
 import 'package:carena/globals/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -10,11 +10,7 @@ class DriverCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     void navigateToProfile() {
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (context) => const DriverProfilePage(),
-        ),
-      );
+      Navigator.of(context).pushNamed(RouteManager.profilePage);
     }
 
     return Container(

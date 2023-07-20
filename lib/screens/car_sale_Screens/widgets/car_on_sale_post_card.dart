@@ -1,3 +1,4 @@
+import 'package:carena/routes/routes.dart';
 import 'package:carena/screens/car_sale_Screens/screens/car_on_sale_post_page.dart';
 import 'package:carena/screens/car_sale_Screens/screens/profile/car_seller_profile.dart';
 import 'package:carena/screens/car_sale_Screens/widgets/likes_and_comments_bar.dart';
@@ -13,10 +14,9 @@ class CarSalePost extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    void navigateToPostScreen() => Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) => CarSaleSinglePostPage(post: post),
-          ),
+    void navigateToPostScreen() => Navigator.of(context).pushNamed(
+          RouteManager.singlePostPage,
+          arguments: post,
         );
 
     return Container(
