@@ -5,13 +5,17 @@ class UserInputField extends StatelessWidget {
   final bool ispass;
   final IconData prefixicon;
   final TextInputType textInputType;
-  final String labeltext;
-  final TextEditingController textEditingController;
+  final String? labeltext;
+  final String? type;
+  final String? hinttext;
+  final TextEditingController? textEditingController;
   const UserInputField(
       {Key? key,
       required this.textInputType,
-      required this.textEditingController,
-      required this.labeltext,
+      this.textEditingController,
+      this.labeltext,
+      this.hinttext,
+      this.type,
       required this.prefixicon,
       this.ispass = false})
       : super(key: key);
@@ -20,19 +24,23 @@ class UserInputField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextField(
       controller: textEditingController,
+      enabled: type == "readonly" ? false : true,
       decoration: InputDecoration(
-        prefixIcon: Icon(
-          prefixicon,
-          color: brandcolor,
-        ),
-        focusedBorder: const OutlineInputBorder(
-          borderSide: BorderSide(width: borderwidth, color: brandcolor),
-        ),
-        border: const OutlineInputBorder(
-          borderSide: BorderSide(width: borderwidth, color: brandcolor),
-        ),
-        labelText: labeltext,
-      ),
+          prefixIcon: Icon(
+            prefixicon,
+            color: brandcolor,
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              width: borderwidth,
+              color: type == "readonly" ? bordercolor : brandcolor,
+            ),
+          ),
+          border: const OutlineInputBorder(
+            borderSide: BorderSide(width: borderwidth, color: brandcolor),
+          ),
+          labelText: labeltext,
+          hintText: hinttext),
       obscureText: ispass,
     );
   }

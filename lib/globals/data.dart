@@ -31,13 +31,13 @@ var posts = [
 
 var carimages = [
   {
-    "url": "assets/images/carone.jpg",
-  },
-  {
-    "url": "assets/images/cartwo.jpg",
+    "url": "assets/images/audi1.jpg",
   },
   {
     "url": "assets/images/carthree.jpg",
+  },
+  {
+    "url": "assets/images/rs7.jpg",
   },
   {
     "url": "assets/images/lexus.jpg",
@@ -144,12 +144,57 @@ var drivers = [
   },
 ];
 
+var carcompanies = [
+  {
+    "name": "Audi Motors",
+    "url": "assets/images/audilogo.png",
+    "verified": "true",
+  },
+  {
+    "name": "BMW Motors",
+    "url": "assets/images/bmwlogo.png",
+    "verified": "false",
+  },
+  {
+    "name": "Land Rover Motors",
+    "url": "assets/images/landrover.png",
+    "verified": "true",
+  },
+  {
+    "name": "Mercedes ",
+    "url": "assets/images/mercedes.png",
+    "verified": "true",
+  },
+];
+
 var comments = [
+  {
+    "username": "Richard Cypher",
+    "url": "assets/images/carone.jpg",
+    "comment": "🤯🤯😱😱 just when i thought lexus was over.",
+    "new": "1",
+  },
+  {
+    "username": "Kahlan Confessor",
+    "url": "assets/images/rs7.jpg",
+    "comment": "Any one else loving the orange in this sleek car?"
+  },
+  {
+    "username": "audi 🚙",
+    "url": "assets/images/audi1.jpg",
+    "comment": "🚅🏍🚲🏍",
+    "new": "2"
+  },
+  {
+    "username": "Richard Cypher",
+    "url": "assets/images/carone.jpg",
+    "comment": "Boom!!! just when i thought lexus was over."
+  },
   {
     "username": "Clara Monseth",
     "url": "assets/images/cartwo.jpg",
-    "comment":
-        "love convertibles but this is too expensive if the price does not include importation fee."
+    "comment": "🚘🚗🚗🚗🚗🚘",
+    "new": "6"
   },
   {
     "username": "Richard Cypher",
@@ -157,9 +202,22 @@ var comments = [
     "comment": "Boom!!! just when i thought lexus was over."
   },
   {
+    "username": "Clara👑💋",
+    "url": "assets/images/person3.jpg",
+    "comment": "💞💞💞💞💖",
+    "new": "3"
+  },
+  {
     "username": "Kahlan Confessor",
     "url": "assets/images/person2.jpg",
-    "comment": "Any one else loving the orange in this sleek car?"
+    "comment": "Hello 🙋‍♂️🙋‍♂️",
+    "new": "1"
+  },
+  {
+    "username": "Kahlan Confessor",
+    "url": "assets/images/person7.jpg",
+    "comment": "Any one else loving the orange in this sleek car?",
+    "new": "5"
   },
   {
     "username": "Clara Monseth",
@@ -210,90 +268,64 @@ var comments = [
     "comment":
         "love convertibles but this is too expensive if the price does not include importation fee."
   },
-  {
-    "username": "Richard Cypher",
-    "url": "assets/images/carone.jpg",
-    "comment": "Boom!!! just when i thought lexus was over."
-  },
-  {
-    "username": "Kahlan Confessor",
-    "url": "assets/images/rs7.jpg",
-    "comment": "Any one else loving the orange in this sleek car?"
-  },
-  {
-    "username": "Clara Monseth",
-    "url": "assets/images/person3.jpg",
-    "comment":
-        "love convertibles but this is too expensive if the price does not include importation fee."
-  },
-  {
-    "username": "Richard Cypher",
-    "url": "assets/images/carone.jpg",
-    "comment": "Boom!!! just when i thought lexus was over."
-  },
-  {
-    "username": "Kahlan Confessor",
-    "url": "assets/images/person7.jpg",
-    "comment": "Any one else loving the orange in this sleek car?"
-  },
 ];
 var reviews = [
   {
     "username": "Clara Monseth",
-    "url": "assets/images/cartwo.jpg",
+    "profilepicture": "assets/images/cartwo.jpg",
     "comment":
         "love convertibles but this is too expensive if the price does not include importation fee."
   },
   {
     "username": "Richard Cypher",
-    "url": "assets/images/carone.jpg",
+    "profilepicture": "assets/images/carone.jpg",
     "comment": "Boom!!! just when i thought lexus was over."
   },
   {
     "username": "Kahlan Confessor",
-    "url": "assets/images/rs7.jpg",
+    "profilepicture": "assets/images/rs7.jpg",
     "comment": "Any one else loving the orange in this sleek car?"
   },
   {
     "username": "Clara Monseth",
-    "url": "assets/images/person3.jpg",
+    "profilepicture": "assets/images/person3.jpg",
     "comment":
         "love convertibles but this is too expensive if the price does not include importation fee."
   },
   {
     "username": "Richard Cypher",
-    "url": "assets/images/carone.jpg",
+    "profilepicture": "assets/images/carone.jpg",
     "comment": "Boom!!! just when i thought lexus was over."
   },
   {
     "username": "Kahlan Confessor",
-    "url": "assets/images/person7.jpg",
+    "profilepicture": "assets/images/person7.jpg",
     "comment": "Any one else loving the orange in this sleek car?"
   },
   {
     "username": "Richard Cypher",
-    "url": "assets/images/carone.jpg",
+    "profilepicture": "assets/images/carone.jpg",
     "comment": "Boom!!! just when i thought lexus was over."
   },
   {
     "username": "Kahlan Confessor",
-    "url": "assets/images/rs7.jpg",
+    "profilepicture": "assets/images/rs7.jpg",
     "comment": "Any one else loving the orange in this sleek car?"
   },
   {
     "username": "Clara Monseth",
-    "url": "assets/images/person3.jpg",
+    "profilepicture": "assets/images/person3.jpg",
     "comment":
         "love convertibles but this is too expensive if the price does not include importation fee."
   },
   {
     "username": "Richard Cypher",
-    "url": "assets/images/carone.jpg",
+    "profilepicture": "assets/images/carone.jpg",
     "comment": "Boom!!! just when i thought lexus was over."
   },
   {
     "username": "Kahlan Confessor",
-    "url": "assets/images/person7.jpg",
+    "profilepicture": "assets/images/person7.jpg",
     "comment": "Any one else loving the orange in this sleek car?"
   },
 ];

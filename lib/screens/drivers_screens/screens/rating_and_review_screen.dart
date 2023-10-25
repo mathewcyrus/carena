@@ -1,9 +1,16 @@
 import 'package:carena/globals/colors.dart';
+import 'package:carena/globals/methods/flush_bar.dart';
+import 'package:carena/providers/user_provider.dart';
+import 'package:carena/screens/drivers_screens/methods/firebase.dart';
 import 'package:flutter/material.dart';
+import 'package:carena/models/user.dart' as model;
+
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:provider/provider.dart';
 
 class RatingAndReviewPage extends StatefulWidget {
-  const RatingAndReviewPage({Key? key}) : super(key: key);
+  final String driveruid;
+  RatingAndReviewPage({Key? key, required this.driveruid}) : super(key: key);
 
   @override
   State<RatingAndReviewPage> createState() => _RatingAndReviewPageState();
@@ -12,9 +19,19 @@ class RatingAndReviewPage extends StatefulWidget {
 class _RatingAndReviewPageState extends State<RatingAndReviewPage> {
   final TextEditingController _reviewController = TextEditingController();
   double _rating = 1.0;
+  bool isLoading = false;
+
+  @override
+  void dispose() {
+    _reviewController.dispose();
+
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
+    model.User user = Provider.of<UserProvider>(context).getUser;
+
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -109,7 +126,7 @@ class _RatingAndReviewPageState extends State<RatingAndReviewPage> {
                               Align(
                                 alignment: Alignment.centerLeft,
                                 child: RatingBar.builder(
-                                  initialRating: 1,
+                                  initialRating: _rating,
                                   minRating: 1,
                                   direction: Axis.horizontal,
                                   allowHalfRating: true,
@@ -149,21 +166,55 @@ class _RatingAndReviewPageState extends State<RatingAndReviewPage> {
                       ],
                     ),
                   ),
-                  Container(
-                    width: double.infinity,
-                    height: 60.0,
-                    padding: const EdgeInsets.all(10.0),
-                    decoration: const BoxDecoration(
-                      color: brandcolor,
-                      borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                    ),
-                    child: const Center(
-                      child: Text(
-                        "Send",
-                        style: TextStyle(
-                            fontSize: 24.0,
-                            fontWeight: FontWeight.bold,
-                            color: complemtarybrandcolor),
+                  InkWell(
+                    onTap: () async {
+                      setState(() {
+                        isLoading = true;
+                      });
+                      var res =
+                          await DriversFirestoreMethods().reviewAndRateDriver(
+                        user.username,
+                        user.uid,
+                        user.profilephoto,
+                        widget.driveruid,
+                        _reviewController.text,
+                        _rating,
+                        DateTime.now(),
+                      );
+                      if (res == "success") {
+                        showNotificationBar(
+                            context, "review sent!", Icons.check, brandcolor);
+                      }
+
+                      setState(() {
+                        _rating = 1.0;
+                        _reviewController.text = "";
+                      });
+                      setState(() {
+                        isLoading = false;
+                      });
+                    },
+                    child: Container(
+                      width: double.infinity,
+                      height: 60.0,
+                      padding: const EdgeInsets.all(10.0),
+                      decoration: const BoxDecoration(
+                        color: brandcolor,
+                        borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                      ),
+                      child: Center(
+                        child: isLoading
+                            ? const CircularProgressIndicator(
+                                color: Colors.white,
+                              )
+                            : const Text(
+                                "Send",
+                                style: TextStyle(
+                                  fontSize: 24.0,
+                                  fontWeight: FontWeight.bold,
+                                  color: complemtarybrandcolor,
+                                ),
+                              ),
                       ),
                     ),
                   ),

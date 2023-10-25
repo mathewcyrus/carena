@@ -1,12 +1,27 @@
+import 'dart:typed_data';
 import 'package:image_picker/image_picker.dart';
 
-imagePicker(ImageSource source) async {
+Future<Uint8List?> imagePicker(ImageSource source,
+    {bool isRegister = false}) async {
   final ImagePicker imagePicker = ImagePicker();
 
-  XFile? file = await imagePicker.pickImage(source: source);
+  if (isRegister) {
+    XFile? file = await imagePicker.pickImage(source: source);
+    if (file != null) {
+      return file.readAsBytes();
+    }
+  } else {
+    List<XFile>? files = await imagePicker.pickMultiImage(
+      imageQuality: 4,
+    );
 
-  if (file != null) {
-    return file.readAsBytes();
+    if (files.isNotEmpty) {
+      List<Uint8List> imageBytesList =
+          await Future.wait(files.map((file) => file.readAsBytes()));
+      return Uint8List.fromList(
+          imageBytesList.expand((imageBytes) => imageBytes).toList());
+    }
   }
-  print("no image selected");
+
+  return null;
 }

@@ -1,21 +1,18 @@
+import 'package:carena/models/driver.dart';
 import 'package:carena/routes/routes.dart';
 import 'package:carena/globals/colors.dart';
 import 'package:flutter/material.dart';
 
 class DriverCard extends StatelessWidget {
-  final dynamic driver;
+  final Driver driver;
   final String? type;
   const DriverCard({super.key, required this.driver, this.type});
 
   @override
   Widget build(BuildContext context) {
-    void navigateToProfile() {
-      Navigator.of(context).pushNamed(RouteManager.profilePage);
-    }
-
     return Container(
-      width: type == "locationbased" ? 260.0 : double.infinity,
-      height: type == "locationbased" ? 350.0 : null,
+      width: type == "locationbased" ? 260.0 : 370.0,
+      height: type == "locationbased" ? 350.0 : 130.0,
       padding: type == "locationbased"
           ? null
           : const EdgeInsets.symmetric(vertical: 10.0),
@@ -40,19 +37,20 @@ class DriverCard extends StatelessWidget {
         children: [
           type != "locationbased"
               ? ListTile(
-                  onTap: () => navigateToProfile(),
+                  onTap: () => Navigator.of(context)
+                      .pushNamed(RouteManager.profilePage, arguments: driver),
                   contentPadding: const EdgeInsets.all(0.0),
                   leading: CircleAvatar(
                     backgroundColor: Colors.white24,
                     radius: 30.0,
-                    backgroundImage: AssetImage(driver['url']),
+                    backgroundImage: NetworkImage(driver.profileImage),
                   ),
                   title: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      driver['username'] != null
+                      driver.driverusername.isNotEmpty
                           ? Text(
-                              driver['username'],
+                              driver.driverusername,
                               style: const TextStyle(fontSize: 20.0),
                             )
                           : Container(
@@ -73,7 +71,7 @@ class DriverCard extends StatelessWidget {
                             width: 10.0,
                           ),
                           Text(
-                            driver['contact'],
+                            driver.phonenumber,
                             style: const TextStyle(fontSize: 14.0),
                           ),
                         ],
@@ -85,10 +83,10 @@ class DriverCard extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(top: 5.0),
                         child: Text(
-                          driver["availability"]
+                          driver.available == true
                               ? "available"
                               : "not available",
-                          style: driver['availability']
+                          style: driver.available == true
                               ? const TextStyle(
                                   fontSize: 17.0, color: brandcolor)
                               : const TextStyle(
@@ -101,7 +99,9 @@ class DriverCard extends StatelessWidget {
               : Column(
                   children: [
                     InkWell(
-                      onTap: () => navigateToProfile(),
+                      onTap: () => Navigator.of(context).pushNamed(
+                          RouteManager.profilePage,
+                          arguments: driver),
                       child: ClipRRect(
                         borderRadius: const BorderRadius.only(
                           topLeft: Radius.circular(10.0),
@@ -116,7 +116,9 @@ class DriverCard extends StatelessWidget {
                             height: 180.0,
                             width: double.infinity,
                             fit: BoxFit.cover,
-                            image: AssetImage(driver['url']),
+                            image: NetworkImage(
+                              driver.profileImage,
+                            ),
                           ),
                         ),
                       ),
@@ -130,14 +132,14 @@ class DriverCard extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            driver['username'],
+                            driver.driverusername,
                             style: const TextStyle(fontSize: 20.0),
                           ),
                           Text(
-                            driver["availability"]
+                            driver.available == true
                                 ? "available"
                                 : "not available",
-                            style: driver['availability']
+                            style: driver.available == true
                                 ? const TextStyle(
                                     fontSize: 17.0, color: brandcolor)
                                 : const TextStyle(
@@ -157,7 +159,7 @@ class DriverCard extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                driver['location'],
+                                driver.location,
                                 style: const TextStyle(
                                   fontSize: 18.0,
                                   color: Colors.grey,
@@ -208,7 +210,7 @@ class DriverCard extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    driver['location'],
+                    driver.location,
                     style: const TextStyle(
                       fontSize: 18.0,
                       color: Colors.grey,

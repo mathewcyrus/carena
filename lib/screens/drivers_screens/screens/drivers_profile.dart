@@ -1,10 +1,12 @@
+import 'package:carena/models/driver.dart';
+import 'package:carena/models/reviewandratings.dart';
 import 'package:carena/routes/routes.dart';
-import 'package:carena/screens/car_sale_Screens/widgets/comment_card.dart';
-import 'package:carena/screens/drivers_screens/screens/rating_and_review_screen.dart';
 import 'package:carena/globals/colors.dart';
-import 'package:carena/globals/data.dart';
 import 'package:carena/globals/url_launcher.dart';
+import 'package:carena/screens/drivers_screens/widgets/reveiw_and_rating.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class ContactInfoWidget extends StatelessWidget {
   final IconData icon;
@@ -80,7 +82,8 @@ class ContactInfoWidget extends StatelessWidget {
 }
 
 class DriverProfilePage extends StatelessWidget {
-  const DriverProfilePage({super.key});
+  final Driver driver;
+  const DriverProfilePage({super.key, required this.driver});
 
   @override
   Widget build(BuildContext context) {
@@ -95,12 +98,12 @@ class DriverProfilePage extends StatelessWidget {
             height: 290.0, // Set an explicit height for the Container
             child: Stack(
               children: [
-                const SizedBox(
+                SizedBox(
                   width: double.infinity,
                   height: 200.0,
                   child: Image(
                     fit: BoxFit.cover,
-                    image: AssetImage("assets/images/rs7.jpg"),
+                    image: NetworkImage(driver.profileImage),
                   ),
                 ),
                 Positioned(
@@ -114,9 +117,9 @@ class DriverProfilePage extends StatelessWidget {
                         width: 3.0,
                       ),
                     ),
-                    child: const CircleAvatar(
+                    child: CircleAvatar(
                       radius: 60.0,
-                      backgroundImage: AssetImage("assets/images/person6.jpg"),
+                      backgroundImage: NetworkImage(driver.profileImage),
                     ),
                   ),
                 ),
@@ -129,46 +132,46 @@ class DriverProfilePage extends StatelessWidget {
                     size: 35.0,
                   ),
                 ),
-                const Positioned(
+                Positioned(
                   bottom: 20.0,
                   left: 0.0,
                   right: 0.0,
                   child: ListTile(
-                    leading: SizedBox(
+                    leading: const SizedBox(
                       width: 120.0,
                     ),
                     title: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Emilia Clarke",
-                          style: TextStyle(
+                          driver.driverusername,
+                          style: const TextStyle(
                             fontSize: 20.0,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 8.0,
                         ),
                       ],
                     ),
                     subtitle: Row(
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.credit_card,
                           size: 20.0,
                           color: brandcolor,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 5.0,
                         ),
                         Text(
-                          "Class A\\n driver",
-                          style: TextStyle(fontSize: 17.0),
+                          driver.licensetype,
+                          style: const TextStyle(fontSize: 17.0),
                         ),
                       ],
                     ),
-                    trailing: Icon(
+                    trailing: const Icon(
                       Icons.edit,
                       size: 35.0,
                       color: brandcolor,
@@ -300,106 +303,34 @@ class DriverProfilePage extends StatelessWidget {
                 ),
                 ContactInfoWidget(
                   icon: Icons.phone,
-                  text: "+254 11234566",
+                  text: driver.phonenumber,
                   action: "call",
-                  onTap: () => urllauncher("+254 11234566", "phone"),
+                  onTap: () => urllauncher(driver.phonenumber, "phone"),
                 ),
                 ContactInfoWidget(
                   icon: Icons.email,
-                  text: "emiliaclarke@gmail.com",
+                  text: driver.email,
                   action: "email",
-                  onTap: () => urllauncher("+254 11234566", "phone"),
+                  onTap: () => urllauncher(driver.email, "email"),
                 ),
-                const ContactInfoWidget(
+                ContactInfoWidget(
                   icon: Icons.location_on,
-                  text: "Nairobi, Kenya",
+                  text: driver.location,
                 ),
                 const ContactInfoWidget(
                   icon: Icons.access_time_filled,
                   text: "5.00am - 9.00pm",
                 ),
-                // Align(
-                //   alignment: Alignment.centerLeft,
-                //   child: RatingBar.builder(
-                //     //Ratins Icons here
-                //     initialRating: 3,
-                //     minRating: 1,
-                //     direction: Axis.horizontal,
-                //     allowHalfRating: true,
-                //     itemCount: 5,
-                //     itemSize: 30.0,
-                //     itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
-                //     itemBuilder: (context, _) => const Icon(
-                //       Icons.star,
-                //       color: complemtarybrandcolor,
-                //     ),
-                //     onRatingUpdate: (rating) {},
-                //   ),
-                // ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 8.0),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
                   child: Text(
-                    "I am a professional driver with 5 years of experience in long-haul transportation. I specialize in refrigerated and hazmat shipments. Safety and punctuality are my top priorities, and I always strive to provide excellent service to my clients. I am dedicated, responsible, and have a clean driving record. I look forward to working with you!",
-                    style: TextStyle(
+                    driver.driversbio,
+                    style: const TextStyle(
                       fontSize: 18.0,
                       color: Colors.grey,
                     ),
                   ),
                 ),
-              ],
-            ),
-          ),
-          Padding(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
-            child: Column(
-              children: [
-                Container(
-                  width: double.infinity,
-                  height: 50.0,
-                  decoration: const BoxDecoration(
-                    color: brandcolor,
-                  ),
-                  child: const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "Vehicle",
-                          style: TextStyle(fontSize: 24.0),
-                        ),
-                        Text(
-                          "KCA 007Q",
-                          style: TextStyle(
-                            fontSize: 24.0,
-                            fontWeight: FontWeight.bold,
-                            color: complemtarybrandcolor,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Container(
-                  height: 371.0,
-                  width: double.infinity,
-                  decoration: const BoxDecoration(color: bordercolor),
-                  child: GridView.count(
-                    crossAxisCount:
-                        2, // Adjust the number of columns according to your needs
-                    children: List.generate(
-                      carimages.length,
-                      (index) {
-                        String imageUrl = carimages[index]["url"]!;
-                        return Image.asset(
-                          imageUrl,
-                          fit: BoxFit.cover,
-                        );
-                      },
-                    ),
-                  ),
-                )
               ],
             ),
           ),
@@ -438,8 +369,9 @@ class DriverProfilePage extends StatelessWidget {
                             flex: 1,
                           ),
                           IconButton(
-                            onPressed: () => Navigator.of(context)
-                                .pushNamed(RouteManager.ratingAndReviewPage),
+                            onPressed: () => Navigator.of(context).pushNamed(
+                                RouteManager.ratingAndReviewPage,
+                                arguments: driver.driveruid),
                             icon: const Icon(
                               Icons.comment_bank,
                               color: complemtarybrandcolor,
@@ -451,16 +383,51 @@ class DriverProfilePage extends StatelessWidget {
                     ),
                   ),
                   Expanded(
-                    child: ListView.builder(
-                      itemCount: reviews.length,
-                      itemBuilder: (context, index) {
-                        final review = reviews[index];
-                        return CommentCard(
-                          comment: review,
-                        );
-                      },
-                    ),
-                  ),
+                      child: StreamBuilder(
+                    stream: FirebaseFirestore.instance
+                        .collection("drivers")
+                        .doc(driver.driveruid)
+                        .collection("reviewsandratings")
+                        .snapshots(),
+                    builder: (
+                      context,
+                      AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>>
+                          snapshot,
+                    ) {
+                      if (snapshot.hasError) {
+                        return Text('Error: ${snapshot.error}');
+                      } else if (snapshot.hasData) {
+                        final reviewsAndRatings = snapshot.data!.docs
+                            .map((doc) => RatingAndReview.fromJson(doc.data()))
+                            .toList();
+
+                        if (reviewsAndRatings.isNotEmpty) {
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Skeletonizer(
+                              enabled: snapshot.connectionState ==
+                                  ConnectionState.waiting,
+                              child: ListView.builder(
+                                itemCount: reviewsAndRatings.length,
+                                itemBuilder: (context, index) {
+                                  final reviewAndRating =
+                                      reviewsAndRatings[index];
+                                  return ReviewAndRatingsCard(
+                                    ratingAndReview: reviewAndRating,
+                                  );
+                                },
+                              ),
+                            ),
+                          );
+                        } else {
+                          return const Center(
+                              child: CircularProgressIndicator());
+                        }
+                      } else {
+                        return const Center(child: Text("No data available."));
+                      }
+                    },
+                  )),
                 ],
               ),
             ),

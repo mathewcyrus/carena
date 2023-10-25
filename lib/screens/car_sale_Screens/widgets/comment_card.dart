@@ -11,7 +11,7 @@ class CommentCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       leading: CircleAvatar(
-        backgroundImage: AssetImage(comment['url']),
+        backgroundImage: NetworkImage(comment['profilepicture']),
       ),
       title: Text(comment['username']),
       subtitle: Text(comment['comment']),

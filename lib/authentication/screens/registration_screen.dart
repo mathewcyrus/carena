@@ -1,7 +1,5 @@
 import 'dart:typed_data';
-
 import 'package:carena/authentication/methods/auth_methods.dart';
-import 'package:carena/authentication/screens/login_screen.dart';
 import 'package:carena/authentication/widgets/input.dart';
 import 'package:carena/globals/colors.dart';
 import 'package:carena/globals/methods/flush_bar.dart';
@@ -9,10 +7,9 @@ import 'package:carena/globals/methods/image_picker.dart';
 import 'package:carena/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-
-import '../../globals/layouts/mobile_screen_layout.dart';
-import '../../globals/layouts/responsive_screens.dart';
-import '../../globals/layouts/web_screen_layout.dart';
+import '../../layouts/mobile_screen_layout.dart';
+import '../../layouts/responsive_screens.dart';
+import '../../layouts/web_screen_layout.dart';
 
 class UserRegistrationDetails extends StatefulWidget {
   const UserRegistrationDetails({Key? key}) : super(key: key);
@@ -32,7 +29,10 @@ class UserRegistrationDetailsState extends State<UserRegistrationDetails> {
   bool isSigning = false;
 
   void pickImage() async {
-    Uint8List image = await imagePicker(ImageSource.gallery);
+    Uint8List? image = await imagePicker(
+      ImageSource.gallery,
+      isRegister: true,
+    );
 
     setState(() {
       profileImage = image;
@@ -45,6 +45,7 @@ class UserRegistrationDetailsState extends State<UserRegistrationDetails> {
     });
     String res = await AuthMethods().signUpUser(
         email: _emailController.text,
+        account: "regular",
         username: _usernameController.text,
         password: _passwordController.text,
         phonenumber: _phoneController.text,
@@ -72,7 +73,6 @@ class UserRegistrationDetailsState extends State<UserRegistrationDetails> {
         ),
       );
     }
-    ;
 
     setState(() {
       isSigning = false;
@@ -100,7 +100,6 @@ class UserRegistrationDetailsState extends State<UserRegistrationDetails> {
         child: Column(
           children: [
             Expanded(
-              // Wrap the Column with Expanded
               child: SingleChildScrollView(
                 child: Column(
                   children: [

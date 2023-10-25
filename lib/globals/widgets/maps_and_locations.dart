@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:carena/globals/api_keys.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:flutter/material.dart';
@@ -27,8 +26,7 @@ class _MapsAndLocationState extends State<MapsAndLocation> {
     await location.getLocation().then(
       (location) {
         currentlocation = location;
-
-        print(currentlocation);
+        setState(() {});
       },
     );
     final GoogleMapController googleMapController = await _controller.future;
@@ -36,7 +34,6 @@ class _MapsAndLocationState extends State<MapsAndLocation> {
     location.onLocationChanged.listen(
       (newloc) {
         currentlocation = newloc;
-        print(currentlocation);
         googleMapController.animateCamera(
           CameraUpdate.newCameraPosition(
             CameraPosition(
@@ -45,9 +42,6 @@ class _MapsAndLocationState extends State<MapsAndLocation> {
             ),
           ),
         );
-        print(currentlocation);
-
-        setState(() {});
       },
     );
     setState(() {});
@@ -61,14 +55,14 @@ class _MapsAndLocationState extends State<MapsAndLocation> {
       PointLatLng(destination.latitude, destination.longitude),
     );
     if (result.points.isNotEmpty) {
-      result.points.forEach(
-        (PointLatLng point) => polylineCoordinates.add(
+      for (var point in result.points) {
+        polylineCoordinates.add(
           LatLng(
             point.latitude,
             point.longitude,
           ),
-        ),
-      );
+        );
+      }
       setState(() {});
     }
   }
@@ -82,40 +76,38 @@ class _MapsAndLocationState extends State<MapsAndLocation> {
 
   @override
   Widget build(BuildContext context) {
-    return currentlocation == null
-        ? const Center(
-            child: Text("loading..."),
-          )
-        : GoogleMap(
-            initialCameraPosition: CameraPosition(
-              target: LatLng(
-                  currentlocation!.latitude!, currentlocation!.longitude!),
-              zoom: 12.5,
-            ),
-            polylines: {
-              Polyline(
-                polylineId: const PolylineId("route"),
-                points: polylineCoordinates,
-              ),
-            },
-            markers: {
-              const Marker(
-                markerId: MarkerId("source"),
-                position: sourcelocation,
-              ),
-              Marker(
-                markerId: const MarkerId("currentlocation"),
-                position: LatLng(
-                    currentlocation!.latitude!, currentlocation!.longitude!),
-              ),
-              const Marker(
-                markerId: MarkerId("destination"),
-                position: destination,
-              ),
-            },
-            onMapCreated: (mapController) {
-              _controller.complete(mapController);
-            },
-          );
+    LatLng targetLocation = currentlocation != null
+        ? LatLng(currentlocation!.latitude!, currentlocation!.longitude!)
+        : LatLng(sourcelocation.latitude, sourcelocation.longitude);
+
+    return GoogleMap(
+      initialCameraPosition: CameraPosition(
+        target: targetLocation,
+        zoom: 12.5,
+      ),
+      polylines: {
+        Polyline(
+          polylineId: const PolylineId("route"),
+          points: polylineCoordinates,
+        ),
+      },
+      markers: {
+        const Marker(
+          markerId: MarkerId("source"),
+          position: sourcelocation,
+        ),
+        Marker(
+          markerId: const MarkerId("currentlocation"),
+          position: targetLocation,
+        ),
+        const Marker(
+          markerId: MarkerId("destination"),
+          position: destination,
+        ),
+      },
+      onMapCreated: (mapController) {
+        _controller.complete(mapController);
+      },
+    );
   }
 }

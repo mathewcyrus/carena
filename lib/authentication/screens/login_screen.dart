@@ -1,14 +1,14 @@
 import 'package:carena/authentication/methods/auth_methods.dart';
-import 'package:carena/authentication/screens/registration_screen.dart';
 import 'package:carena/authentication/widgets/input.dart';
 import 'package:carena/globals/colors.dart';
 import 'package:carena/globals/methods/flush_bar.dart';
+import 'package:carena/globals/widgets/flush_bar.dart';
 import 'package:carena/routes/routes.dart';
 import 'package:flutter/material.dart';
 
-import '../../globals/layouts/mobile_screen_layout.dart';
-import '../../globals/layouts/responsive_screens.dart';
-import '../../globals/layouts/web_screen_layout.dart';
+import '../../layouts/mobile_screen_layout.dart';
+import '../../layouts/responsive_screens.dart';
+import '../../layouts/web_screen_layout.dart';
 
 class UserLogin extends StatefulWidget {
   const UserLogin({Key? key}) : super(key: key);
@@ -35,12 +35,10 @@ class _UserLoginState extends State<UserLogin> {
     if (res != "success") {
       showNotificationBar(context, res, Icons.error, Colors.red);
     } else {
-      showNotificationBar(
-        context,
-        "logged in succesfully ",
-        Icons.check,
-        brandcolor,
-      );
+      const FlushBar(
+          message: "logged in succesfully",
+          icon: Icons.check,
+          iconcolor: brandcolor);
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
           builder: (context) => const ResponsiveLayout(

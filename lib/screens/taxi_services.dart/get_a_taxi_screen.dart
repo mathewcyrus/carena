@@ -10,8 +10,10 @@ class TaxiPage extends StatefulWidget {
 class _TaxiPageState extends State<TaxiPage> {
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text("Taxi"),
+    return const Scaffold(
+      body: Center(
+        child: Text("Taxi"),
+      ),
     );
   }
 }
