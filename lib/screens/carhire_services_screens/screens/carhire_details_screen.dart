@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:carena/authentication/widgets/input.dart';
 import 'package:carena/globals/colors.dart';
 import 'package:carena/globals/methods/flush_bar.dart';
@@ -230,8 +232,12 @@ class _CarHireDetailsPageState extends State<CarHireDetailsPage> {
                             hiredDates,
                           );
                           if (res == 'success') {
-                            showNotificationBar(context, "hired succesfully!",
-                                Icons.check, brandcolor);
+                            showNotificationBar(
+                              context,
+                              "hired succesfully!",
+                              Icons.check,
+                              brandcolor,
+                            );
 
                             setState(() {
                               _isloading = false;
